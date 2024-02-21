@@ -14,8 +14,8 @@ archivo_medio="archivo_medio.docx"
 archivo_medio2="archivo_medio2.docx"
 if st.button("traslate"):
         if uploaded_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+                archivo_terminado=archivo_terminado+".docx"
                 read_docx(uploaded_file,archivo_terminado,valor)
-                name=archivo_terminado+".docx"
         elif uploaded_file.type == "application/vnd.openxmlformats-officedocument.presentationml.presentation":
                 read_pptx(uploaded_file,archivo_terminado,valor)
                 a=(uploaded_file.name).split(".")
@@ -26,13 +26,13 @@ if st.button("traslate"):
                         temp_file.write(uploaded_file.read())
                 pdf_word(temp_file_path,archivo_medio)
                 read_docx2(archivo_medio,archivo_medio2,valor)
-                name=archivo_terminado+".pdf"
+                archivo_terminado=archivo_terminado+".pdf"
                 docx_pdf(archivo_medio2,archivo_terminado)
                 
                 
         st.download_button(
                 label="Download the file",
                 data=open(archivo_terminado, 'rb').read(),
-                file_name=name,
+                file_name=archivo_terminado,
                 key='boton_descarga'
         )
