@@ -9,7 +9,7 @@ uploaded_file = st.file_uploader("Selecciona un archivo", type=["pdf", "ppt", "p
 opciones = {"español":"es", "english": "en","português":"pt","Deutsch":"de","uارد":"ur","italiano":"it","Français":"fr","日本語":"ja","chinese":"zh-CN","chezch":"cs","korean":"ko"}
 opcion_seleccionada = st.selectbox("Selected de language:", list(opciones.keys()))
 valor=opciones[opcion_seleccionada]
-archivo_terminado="file_traslated.pdf"
+archivo_terminado="file_traslated"
 archivo_medio="archivo_medio.docx"
 archivo_medio2="archivo_medio2.docx"
 if st.button("traslate"):
@@ -26,9 +26,9 @@ if st.button("traslate"):
                         temp_file.write(uploaded_file.read())
                 pdf_word(temp_file_path,archivo_medio)
                 read_docx2(archivo_medio,archivo_medio2,valor)
-                print("llege")
-                docx_pdf(archivo_medio2,archivo_terminado)
                 name=archivo_terminado+".pdf"
+                docx_pdf(archivo_medio2,archivo_terminado)
+                
                 
         st.download_button(
                 label="Download the file",
